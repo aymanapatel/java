@@ -1,0 +1,20 @@
+= Venkat Bible
+Notes on Venkats's YT Talks
+
+
+== Other links
+
+- Notion Link
+- Atlassian Link
+
+
+== Kotlin
+
+- link:Kotlin/README.adoc[Kotlin]
+
+
+== Java 8
+
+- link:Java8/TransformingCodetoJava8/README.adoc[Java 8]
+
+

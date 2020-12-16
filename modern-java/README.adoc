@@ -1,0 +1,5 @@
+= Modern Java
+:toc:
+
+> Repository to learn from Java 8 to Java 15. From reading JSR specifications to see how Java is implementing paradigms from other languages such as Scala and Kotlin.
+
