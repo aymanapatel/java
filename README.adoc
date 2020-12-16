@@ -8,3 +8,9 @@ link:modern-java/README.adoc[Link]
 == Venkat Subraminiam
 
 link:venkat-subraminiam-talks/README.adoc[Link]
+
+== Venkat Subraminiam
+
+Java DI from Gaurav Sen's live stream
+
+link:java-di-gauravsen/README.adoc[Link]
