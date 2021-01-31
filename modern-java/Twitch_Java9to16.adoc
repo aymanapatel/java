@@ -1,0 +1,49 @@
+= Twitch Q&A - Java 9-16
+
+
+> https://www.twitch.tv/videos/879911162[Link]
+
+
+Q: Is Java Records stable?
+
+A: Yes, can use it with Jackson. (OOTB Record support with Jackson)
+
+'''
+
+Q: https://stackoverflow.com/questions/65741773/would-stream-tolist-perform-better-than-collectors-tolist[Would Stream.toList() perform better than Collectors.toList()]
+
+A: Java 16 introduces `Stream.toList()`. But the benchmark is not exact one-to-one compare. Look at comments for better suggestions for benchmarking.
+
+https://twitter.com/gunnarmorling/status/1351283558053261315[Gunnar's Tweet]
+
+- `IntStream.range(1, 1000).boxed().collect(Collectors.toList());`
+
+Here `boxed()` and collect()` know that size/range is 1000. But `Collectors.toList()` does nto know.
+
+- `IntStream.range(1, 1000).boxed().toList();`
+
+Here `boxed()` and toList()` know that size/range is 1000. 
+
+WIL: use `@Benchmark` to get benchmarks for your stream operations. https://www.baeldung.com/java-stream-reduce[Baeldung's `reduce` example]
+
+'''
+
+
+Q: https://stackoverflow.com/questions/65380359/lomboks-access-to-jdk-compilers-internal-packages-incompatible-with-java-16[Lombok's access to jdk.compiler's internal packages incompatible with Java-16]
+
+A: Lombok is trying to access internal JDK via reflection which is discontinued in Java 16 due to https://openjdk.java.net/jeps/396[JEP 396: Strongly Encapsulate JDK Internals by Default]
+
+
+'''
+
+Q: https://stackoverflow.com/questions/64132803/when-and-how-to-perform-one-to-0-n-mapping-stream-mapmulti-over-flatmap-as-of-j[When and how to perform one to 0..n mapping Stream mapMulti over flatMap as of Java 16?]
+
+https://download.java.net/java/early_access/jdk16/docs/api/java.base/java/util/stream/Stream.html#mapMulti(java.util.function.BiConsumer)[Java Doc] 
+
+
+**Time 1hr**
+
+
+
+
+
