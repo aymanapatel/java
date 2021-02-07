@@ -7,13 +7,13 @@
 .Functional Interfaces
 [#table-cbq-shell-commands]
 |===
-|Type|Input Arguments | Return Result  |Code
+|Type|Input Arguments | Return Result  | Code
 
 |Predicate
 |1 Argument
 |Returns boolean (`true` or `false`)
 a|
-Pushes the specified value on to the given parameter stack.
+
 
 .Functional Interface
 ----
@@ -27,6 +27,73 @@ public interface Predicate<T> {
 ----
 Predicate<String> predicateExample = (List<String> list) -> list.isEmpty(); 
 OR list.length() > 5
+----
+
+|Supplier
+|No Argument
+|Returns some value
+a|
+
+
+.Functional Interface
+----
+@FunctionalInterface
+public interface Supplier<T> {
+  T get();
+}
+----
+
+.Example
+----
+Supplier<String> supplierExample = () -> Math.random(); 
+OR list.length() > 5
+----
+
+
+|Consumer
+|Single input
+|No output
+a|
+Pushes the specified value on to the given parameter stack.
+
+.Functional Interface
+----
+@FunctionalInterface
+public interface Consumer<T> {
+  boolean accept(T t);
+  default Consumer<T> andThen(Consumer<? super T> after);
+}
+----
+
+.`accept` Example
+----
+@Getter
+@Setter
+@AllArgsConstructor
+class Employee {
+  private String name;
+}
+...
+Consumner<String> consumerExample = e -> e.setName("Ayman"); 
+
+----
+
+.`andThen` example
+
+----
+@Test
+public void whenNamesPresentUseBothConsumer(){
+    List<String> cities = Arrays.asList("Sydney", "Dhaka", "New York", "London");
+
+    Consumer<List<String>> upperCaseConsumer = list -> {
+        for(int i=0; i< list.size(); i++){
+            list.set(i, list.get(i).toUpperCase());
+        }
+    };
+    Consumer<List<String>> printConsumer = list -> list.stream().forEach(System.out::println);
+
+    upperCaseConsumer.andThen(printConsumer).accept(cities);
+}
 ----
 
 
