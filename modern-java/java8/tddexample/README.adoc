@@ -1,0 +1,8 @@
+= Java 8 by TDD
+:toc:
+
+== FizzBuzz
+
+1. Iterative approach (Legacy)
+
+2. Functional Java Approach (`map` and `Optional`)
