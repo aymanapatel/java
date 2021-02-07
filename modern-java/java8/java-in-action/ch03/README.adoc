@@ -1,0 +1,33 @@
+= Lambda Expressions
+:toc:
+
+== Functional Interfaces
+
+
+.Functional Interfaces
+[#table-cbq-shell-commands]
+|===
+|Type|Input Arguments | Return Result  |Code
+
+|Predicate
+|1 Argument
+|Returns boolean (`true` or `false`)
+a|
+Pushes the specified value on to the given parameter stack.
+
+.Functional Interface
+----
+@FunctionalInterface
+public interface Predicate<T> {
+  boolean test(T t);
+}
+----
+
+.Example
+----
+Predicate<String> predicateExample = (List<String> list) -> list.isEmpty(); // list.length()>5; etc.
+----
+
+
+
+|===
