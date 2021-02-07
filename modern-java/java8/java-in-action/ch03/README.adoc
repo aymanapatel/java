@@ -25,7 +25,8 @@ public interface Predicate<T> {
 
 .Example
 ----
-Predicate<String> predicateExample = (List<String> list) -> list.isEmpty(); // list.length()>5; etc.
+Predicate<String> predicateExample = (List<String> list) -> list.isEmpty(); 
+OR list.length() > 5
 ----
 
 
