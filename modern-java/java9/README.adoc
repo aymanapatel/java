@@ -1,0 +1,41 @@
+= Java 9 Features
+:toc:
+:icons: font
+
+== Java 9 Module System
+
+-  https://www.notion.so/JDK-9-445d8ea5c7614fa4b8c1b045dff281cd#3025d57cae9b4fd5a65f185b163e7f2c[Notion Link]
+
+
+=== Major Issue: Convert Java 8 to convert Java 9 where dependencies are not using JPMS but use Reflection APIs
+
+
+
+== Stream API Improvements
+
+== Optional Class Improvements
+
+== Try With Resources Improvement
+
+== CompletableFuture API Improvements
+
+== Reactive Streams
+
+== Factory Methods for Immutable List, Set, Map and Map.Entry
+
+== Private methods in Interfaces
+
+== Process API Improvements
+
+== Diamond Operator for Anonymous Inner Class
+
+
+== HTTP 2 Client
+
+== Multi-Resolution Image API
+
+== Enhanced @Deprecated annotation
+
+== Java 9 REPL (JShell)
+
+== Miscellaneous Java 9 Features
