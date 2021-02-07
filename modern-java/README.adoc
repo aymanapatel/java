@@ -3,3 +3,9 @@
 
 > Repository to learn from Java 8 to Java 15. From reading JSR specifications to see how Java is implementing paradigms from other languages such as Scala and Kotlin.
 
+
+== Links
+
+- https://nipafx.dev/
+
+- https://www.journaldev.com/7153/core-java-tutorial[Journal Dev - Java 8 to Java 15]
