@@ -1,8 +1,17 @@
-= Java 8 by TDD
+= Refactoring to Java 8
 :toc:
+
 
 == FizzBuzz
 
 1. Iterative approach (Legacy)
 
 2. Functional Java Approach (`map` and `Optional`)
+
+link:src/main/java/com/ayman/fizzbuzz/FizzBuzzConvertor.java[FizzBuzzConvertor.java]
+
+== https://www.youtube.com/watch?v=wjF1WqGhoQI[Venkat's talk link]
+
+=== Refactor Interative Prime to `IntStream`
+
+link:src/main/java/com/ayman/prime/PrimeConvertor.java[PrimeConvertor.java]
