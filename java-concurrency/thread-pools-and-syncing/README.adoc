@@ -1,0 +1,56 @@
+= Threads Pools and Thread Syncing
+:toc:
+:icons: font
+
+> Question in Discord: How do I synchronize threads? Java #concurrency Jan 18
+
+
+== Types of Thread Pools
+
+https://www.youtube.com/watch?v=sIkG0X4fqs4&t=0s[Link]
+
+=== `FixedThreadPool`
+
+> Pool with 1 thread
+
+=== `CachedThreadPool`
+
+> Pool creates as many threads 
+
+
+=== `ScheduledThreadPool`
+
+
+
+=== `SingleThreadedThreadPool`
+
+
+== Approaches for Thread syncing
+
+=== Approach 1: Use `java.util.concurrent.CountDownLatch`
+
+
+
+=== Approach 2: Use `java.util.concurrent.ExecutorService.invokeAll()`
+
+
+=== Approach 3: Use `synchronized` and `volatle` primities
+
+WARNING: For the LOVE OF GOD; **DON'T DO THIS**
+
+
+
+
+=== Approach 4: Use `java.util.concurrent.ForkJoinPool`
+
+=== Approach 5: Use Message Passing constructs instead of Concurrency
+
+- Actor Model
+- CSP (Communicationg Sequential Processes)
+- SEDA (Staged Event Driven Architecture)
+
+=== Approach 6: Use `java.util.concurrent.Exchanger`
+
+=== Approach 7: Use `java.util.concurrent.CyclicBarrier`
+
+NOTE: Approach 2 seems to be very clean and a good higher-level abstraction.
