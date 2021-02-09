@@ -1,6 +1,21 @@
 = Java Concurrency
 :toc:
 
+== https://learning.oreilly.com/library/view/java-in-a/9781492037248/ch06.html#javanut7-CHP-6-SECT-5[Java Concurrency In a Nutshell]
+
+=== Working with Threads
+
+Checklist for working with Threads
+
+* [x] **Synchronization of Data** : Protecting object state and memory; NOT CODE
+* [x] **Synchronization of coorperation between Threads** : Define a coorperative mechanism between Threads
+* [x] **Acquiring Monitors**: Acquire monitor prevent other threads to access monitor. But it does not Protect the Object.
+* [x] Unsynchronized methods can see (and modify) inconsistent state even if the object's monitor is locked.
+* [x] Locking an `Object[]` does not lock individual objects
+* [x] `synchronized` cannot appear on a method in interface (even for `default` method definition). https://stackoverflow.com/a/23463334/9642851[Why is it so? StackOverflow answer]
+* [x] Inner classes are just syntactic sugar, so locks on inner classes have no effect on the enclosing class (and vice versa).
+* [x] Java’s locks are reentrant. This means that if a thread holding a monitor encounters a synchronized block for the same monitor, it can enter the block.
+
 
 == Basics
 
