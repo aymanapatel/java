@@ -161,8 +161,9 @@ Features:
 
 If you run this on a virtualized/containerized environement, it may not give performance benefit. 
 
-**DO NOT PARALLELIZE SMALL UNITS OF WORK**
-**DO NOT PARALLELIZE INFINITE SREAMS OF DATA**
+- **DO NOT PARALLELIZE SMALL UNITS OF WORK**
+- **DO NOT PARALLELIZE INFINITE STREAMS OF DATA**
+
 
 > Rule of thumb: Add parallelism only if they are Observable improvement benefits.
 
