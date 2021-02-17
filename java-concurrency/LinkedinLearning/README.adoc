@@ -1,0 +1,88 @@
+= https://www.linkedin.com/learning/java-concurrency-troubleshooting-latency-and-throughput/welcome-to-high-performing-java-applications[Java ConcurrencyTroubleshooting]
+:toc:
+:icons: font
+
+> by Tayo Koleoso 
+
+
+== Introduction
+
+=== Latency vs Throughput
+
+.Latency vs Throughput
+[options=header]
+|===
+| Throughput | Latency
+| How many tasks can be handled simultaneously over a period of time | Measure of single task to take?
+| Waiting thread = Slow performance | Waiting thread = Slow performance
+|===
+
+> Prolonged *latency* problems will lead to *throughput* problems
+
+=== Parallelism vs Concurrency
+
+.Parallelism vs Concurrency
+[options=header]
+|===
+| Parallelism | Concurrency
+| Different processor, multiple code execution | Same processor, multiple code execution
+|===
+
+NOTE: Know your hardware
+
+
+== Source of Blocked Threads
+
+=== Synchronization and Locking
+
+1. **Synchronization**: 
+    - Forces 1-by-1 access to methods and data (resources)
+    - Prevents data access corruption.
+
+2. Locking
+    - A tool used to enforce syncronization.
+    
+Threads MUST acquire lock to a particular object prior to accessing that object    
+     
+
+.Synchronized and Unsynchronized classes in Java
+[options=header]
+|===
+
+| Synchronized | Unsynchronized
+| `Vector` | `ArrayList`
+| `StringBuffer` | `StringBuilder`
+|===
+
+[red]#Syncronization = Thread-safe.#
+[green]#BUT, this also means it has performance-issues.#
+
+=== Why people say Synchronized is not a great solution
+
+- Even though it is thread-safe, but it impacts performance in a muti-threaded environment.
+- Use design patterns ot avoid synchronization.
+
+
+== Garbege Collection 
+
+
+=== JVM Garbage Collector Algorithm
+
+- Concurrent Mark Sweep GC (CMS-GC) - Old, Pre JDK 9. It is deprecated
+- G1 GC - JDK 9 Later
+- Z GC - OpendJDK11 and later
+
+== Tuning JVM GCs
+
+- GC are sometimes selfish 
+- Stop the world
+- How much heap space can be reclaimed
+
+NOTE: todo Read Gaurav and other GC videos to get into algos
+
+
+== Troubleshoot Blocked Threads
+
+
+
+
