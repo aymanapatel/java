@@ -246,3 +246,32 @@ Steps
 2. Spotify Thread Dump Analyzer
 
 
+== JMC
+
+- JDK 10 and earlier: Run JMC in Terminal
+- JDK 11 nad later: Download from Oracle website
+
+=== Features
+
+- Triggers
+- Memory 
+- System
+
+
+== JFR
+
+JFR is bundled in JMC.
+
+
+Add to JAR by adding the CLI command:
+
+`java -XX:+UnlockCommercialFeatures -XX:+FlightRecorder`
+
+- After recording a `.jfr` file is produced which can be opened in JMC or jvisualvm.
+
+
+== JMH
+
+- Maven dependency or `mvn archetype`
+- Programmatically benchmark throughput of methods.
+
