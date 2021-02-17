@@ -156,13 +156,13 @@ Features:
 4. Fluent API with Lambda expressions
 
 
-== `parallelStream()`
+=== `parallelStream()`
 
 
 If you run this on a virtualized/containerized environement, it may not give performance benefit. 
 
-== **DO NOT PARALLELIZE SMALL UNITS OF WORK**
-== **DO NOT PARALLELIZE INFINITE SREAMS OF DATA**
+**DO NOT PARALLELIZE SMALL UNITS OF WORK**
+**DO NOT PARALLELIZE INFINITE SREAMS OF DATA**
 
 > Rule of thumb: Add parallelism only if they are Observable improvement benefits.
 
@@ -192,5 +192,56 @@ public static synchronized List<String> pocWithParallelStreamSynchronized(List<S
 == Troubleshoot Blocked Threads
 
 
+=== Tools
+
+==== Reactive Tool (Look after $hit happens)
+
+1. `jcmd`
+2. `jstat`
+3. `jstack`
+4. JFR: Can be proactive as well
+
+==== Proactive Tool (Look after $hit happens)
+
+1. Pinpoint (OSS APM)
+2. Datadog
+3. Prometheous
+4. Dynatrace
+5. New Relic
+6. Java: `jvisualvm`
+7. `JMC` (Java Mission Control)
+
+=== Static Code analyzer
+
+1. PMD (Multi-language; IDE support; Worked only with `.java` files)
+2. FindBugs (Only Java; can work with both `.java` and `.class`)
+
+
+
+== Thread Dumps
+
+1. JMC
+2. JFR
+3. `jvisualvm`
+4. jcmd
+4. jstack
+
+
+
+
+Steps
+
+1. **Find your Java Process ID**
+    - Windows: `tasklist /fi "imagename eq java.exe"`
+    - Unix/Mac: `pgrep java`
+    
+2. Thread dump suing `jcmd`: `jcmd <PID> Thread.print > thread_dump.txt `
+
+
+
+=== Thread Dump Analyzer
+   
+1. `jstack.review`
+2. Spotify Thread Dump Analyzer
 
 
