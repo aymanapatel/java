@@ -60,7 +60,7 @@ Threads MUST acquire lock to a particular object prior to accessing that object
 === Why people say Synchronized is not a great solution
 
 - Even though it is thread-safe, but it impacts performance in a muti-threaded environment.
-- Use design patterns ot avoid synchronization.
+- Use design patterns to avoid synchronization.
 
 
 == Garbege Collection 
@@ -72,7 +72,7 @@ Threads MUST acquire lock to a particular object prior to accessing that object
 - G1 GC - JDK 9 Later
 - Z GC - OpendJDK11 and later
 
-== Tuning JVM GCs
+=== Tuning JVM GCs
 
 - GC are sometimes selfish 
 - Stop the world
