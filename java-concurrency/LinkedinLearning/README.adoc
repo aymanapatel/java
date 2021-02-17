@@ -1,4 +1,4 @@
-= https://www.linkedin.com/learning/java-concurrency-troubleshooting-latency-and-throughput/welcome-to-high-performing-java-applications[Java ConcurrencyTroubleshooting]
+= https://www.linkedin.com/learning/java-concurrency-troubleshooting-latency-and-throughput/welcome-to-high-performing-java-applications[Java Concurrency Troubleshooting]
 :toc:
 :icons: font
 
@@ -80,6 +80,114 @@ Threads MUST acquire lock to a particular object prior to accessing that object
 
 NOTE: todo Read Gaurav and other GC videos to get into algos
 
+
+== Resource Pooling
+
+In the real world, we cannot descrease latency or increase throughput by throwing more stuff at it to make it faster. Sometimes, just need to deal with the fact that we need to fix either throughtput or latency issues but doing both together is next to possible.
+
+It is better to server smaller users faster (lower latency : with small throughput) than serve high # of users longer (hih throughput but lower latency).
+
+Solutions:
+
+1. Make Componenets available immediately for use.
+2. Reduce amount of time spent `wait()` for threads
+3. Efficient use of black-box (unknown) systems and resources.
+4. Predicatable forecasting of an application's capacity.
+
+As per the code:
+
+1. Lowerinefficient SQL queries
+2. Lower inefficient Hibernate or JPA code 
+3. Optimize network optimizations
+
+
+=== Reactive Programming
+
+> Improves throughput 
+
+1. Message oriented
+2. Easily parallelize
+3. Eficient use of threads. Allows different threads to finish one task.
+        Meaning: 
+        
+        |-------Thread1(t1)------|    |-------Thread2--(t1 freed)----|
+        Connection to external    --> Do Business Logic
+        
+
+== Tools
+
+=== Java Microbenchmark Harness (JMH) (OpenJDK12)
+
+> Provides hyper-localized testing of code to get performance metrics (`@Benchmark`)
+
+
+== Change some defaults
+
+
+=== Change GC defaults
+
+JVM in JDK 8 reserves only 25%. This is fine for local environment. But for higher environments, we need to configure to increase JVM heap size so that excessive GC does not happen frequently
+
+Heap size can be configured as given below:
+
+```
+-XX:InitialRAMPercentage
+-XX:MaxRAMPercentage
+-XX:MinRAMPercentage
+```
+
+
+=== Async Pooling
+
+Use `AsyncAppender` in logback. Search for `Async` appenders in Log4J.
+
+=== DB Pooling
+
+There are many JDBC connection pool, but https://github.com/brettwooldridge/HikariCP[HikariCP] is by far the best and should be used by default.
+
+
+== Java Stream Issues
+
+Features:
+
+1. Immutable
+2. Lazily evaluated
+3. Support cheap parallelism
+4. Fluent API with Lambda expressions
+
+
+== `parallelStream()`
+
+
+If you run this on a virtualized/containerized environement, it may not give performance benefit. 
+
+== **DO NOT PARALLELIZE SMALL UNITS OF WORK**
+== **DO NOT PARALLELIZE INFINITE SREAMS OF DATA**
+
+> Rule of thumb: Add parallelism only if they are Observable improvement benefits.
+
+
+=== Major Stream Issue: Do not give custom thread support in Stream API
+
+Example:
+
+```
+public static List<String> pocWithParallelStream(List<String> inputString) {
+
+    return inputString.parallelStream()
+            .map(Scrambler::scrambleWithName)
+            .collect(Collectors.toList());
+}
+
+
+public static synchronized List<String> pocWithParallelStreamSynchronized(List<String> inputString) {
+
+    return inputString.parallelStream()
+            .map(Scrambler::scrambleWithName)
+            .collect(Collectors.toList());
+}
+// pocWithParallelStream and pocWithParallelStreamSynchronized will use the same thread pool which results in starving your entire application
+```
 
 == Troubleshoot Blocked Threads
 
