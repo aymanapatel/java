@@ -87,15 +87,66 @@ Every class file has a specific defined structure
 a| a. First 4 bytes Denotes conformance to class file format
 b. Second 4 bytes Denotes major and minor version used to compile file; these are checked so that target JVM is not lower than the java used to compile the file. If this is not followed a `UnSupportedClassVersionError` is thrown @ runtime.
 
-| Constant pool |The pool of constants for the class| 
-|Access flags |Whether the class is abstract, static, and so on
-|This class | The name of the current class
-|Superclass |The name of the superclass
-|Interfaces |Any interfaces in the class
-|Fields|Any fields in the class
-|Methods|Any methods in the class
-|Attributes| Any attributes of the class (e.g., name of the source file, etc.)
+| Constant pool |The pool of constants for the class| for example, names of classes, interfaces, and fields. When the JVM executes code, the constant pool table is used to refer to values rather than having to rely on the layout of memory at runtime.
+|Access flags |Whether the class is public, private, abstract, static, and so on
+a| 1. Firt flag: identifies general properties, such as whether a class is public, followed by whether it is final and cannot be subclassed.
+2. Second flag:  determines whether the class file represents an interface or an abstract class.
+3. Third flag:  indicates whether the class file represents a synthetic class that is not present in source code, an annotation type, or an enum.
+
+|This class | The name of the current class| Index to the constant pool to identify type hierarchy belonging to the class.
+|Superclass |The name of the superclass| Index to the constant pool to identify type hierarchy belonging to the class.
+|Interfaces |Any interfaces in the class| Index to the constant pool to identify type hierarchy belonging to the class.
+|Fields|Any fields in the class| Signature-like structure includiing modifiers that apply to field
+|Methods|Any methods in the class| Signature-like structure includiing modifiers that apply to method
+|Attributes| Any attributes of the class (e.g., name of the source file, etc.)| Set of attributes to represent structured items not fixed in size
 |===
+
+==== Inspect `.class` file
+
+Inspect `.class` file using `javap`
+
+Example:
+
+`MyApplication.java`
+
+```java
+public class MyApplication {
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Hello World");
+        }
+    }
+}
+```
+
+`javap -c MyApplication`
+
+```java
+public class HelloWorld {
+  public HelloWorld();
+    Code:
+       0: aload_0             // Places `this` reference to start of the stack
+       1: invokespecial #1    //  invokes an instance method that has specific handling for calling superconstructors and creating objects. Method java/lang/Object."<init>":()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: iconst_0    //TODO
+       1: istore_1
+       2: iload_1
+       3: bipush        10
+       5: if_icmpge     22
+       8: getstatic     #2    // Field java/lang/System.out ...
+      11: ldc           #3    // String Hello World
+      13: invokevirtual #4    // Method java/io/PrintStream.println ...
+      16: iinc          1, 1
+      19: goto          2
+      22: return
+}
+```
+
+=== Java Hotspot VM
+
 
 == Hardware and OS
 
