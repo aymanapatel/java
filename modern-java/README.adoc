@@ -82,7 +82,5 @@ Things added by this version:
 
     // Before
     Loop thorugh file
-    
     // After
-    
     List<String> lines = Files.readLines(Paths.get("path","to", "file.txt");
