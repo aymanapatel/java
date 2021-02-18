@@ -23,6 +23,30 @@
 
 == Factory Methods for Immutable List, Set, Map and Map.Entry
 
+=== Immutable `Map` and `Map.Entry`
+
+
+1. Immutable Map
+
+```java
+// Immutable map before Java 9
+Map<String,String> emptyMap = new hashMap<>();
+Map<String,String> immutableMap = Collections.unmodifiableMap(emptyMap);
+
+// Immutable map from Java 9
+Map<String,String> immutableMap = Map.of("key", "value");
+
+// If you want mutable map; you can do this hack
+Map<String,String> mutableMap = new HashMap<>();
+{
+  mutableMap.put("key", "value");
+}
+```
+
+2. Map.Entry
+
+
+
 == Private methods in Interfaces
 
 == Process API Improvements
