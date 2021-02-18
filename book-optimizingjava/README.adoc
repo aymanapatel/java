@@ -1,0 +1,65 @@
+= https://learning.oreilly.com/library/view/optimizing-java/9781492039259/[(Book) - Optimizing Java]
+:toc:
+
+
+== Java Performance Primer
+
+
+> Mix of mathematical emperical analysis and human psycology
+
+=== Java Performance - The Wrong Way
+
+1. History Lesson
+
+- For many years, a Google search for Performance Tuning in Java gave a result that was written in 1990s. That is terrible for modern Java applications where the JVM has evolved to such a point that early advices are opposite of what should be done.
+- For example, in 1990s JVM has terrible method dispatch problem. This meant it was recommended to write monolith gigantic methods. But modern java has fixed the problem of method dispatch. 
+- Lesson learned; Keep in mind the context of advice that you see on the internet.
+
+2. Rule of thumb
+
+- No magic "tricks" for JVM. Context of application is everything.
+- No secret algorithms are hidden for you. In other words, there are no hidden MIRACLES.
+- Statistics inference of JVM such as standard deviantion and variance are ill-suited since JVM stats are not normally distributed. 
+
+> The observed performance measurements of JVM applications are very often not normally distributed. This means that elementary statistical techniques (e.g., standard deviation and variance) are ill-suited for handling results from JVM applications. This is because many basic statistics methods contain an implicit assumption about the normality of results distributions.
+
+
+== JVM Overview
+
+
+== Hardware and OS
+
+== Performance Testing Patterns and Anti-patterns (Complete this after reading all other chapters and add context for each point in this chapter)
+
+
+== Microbenchmarking and Statistics
+
+
+
+== Understanding GCs
+
+
+== Advanced GCs
+
+
+== GC Logging, Monitoring, Tuning and Tools
+
+
+== Code Execution on the JVM
+
+== Understanding JIT Compilation
+
+== Java Language Performance Techniques
+
+== Concurrent Performant Techniques
+
+
+== Profiling
+
+
+== High-performance Logging and Messaging
+
+
+== Java 9 and Future
+
+  
