@@ -23,9 +23,79 @@
 
 > The observed performance measurements of JVM applications are very often not normally distributed. This means that elementary statistical techniques (e.g., standard deviation and variance) are ill-suited for handling results from JVM applications. This is because many basic statistics methods contain an implicit assumption about the normality of results distributions.
 
+== Taxonomy of Performance
+
+
+1. Throughgput
+  - Defined a unit of work in soem time period.
+  - 
+  
+2. Latency
+  - Defined as time taken for complete request response
+  - aka e2e time to serve arequest
+  - Distributed tracing gives the latency of services in a nicroservice architecture
+    - Examples: Opentelemetry (Opentracing+OpenConsensus), Jaegar, Zipkin, Datadog, Dynatrace, New Relic, Lightstep
+    
+3. Capacity
+   - Defined as work parallism for unit of work
+   - aka Parallelizability of throughput
+
+4. Utilization 
+  - CPU, Network Memory usage and other usages.
+
+
+5. Scalibility
+  - Linear scalability
+  - Verticval vs Horizontal Scaling
+6. Efficieny
+  - Throughput of system/utilized resources
 
 == JVM Overview
 
+> JVM is a *stack-based interpreted machine*. That means, instead of using registers(like in C/C++); it uses execution stack to store partial results as well as perform operations on those elemetns on the stack.
+
+=== What happenes inside when you run your program
+
+
+1. Interpreting and Classloading
+
+1. `java MyApplication.java` creates `MyApplication.class`
+2. Entry point of `MyApplication.class` is the `main()` method
+3. Java classloading happens to give control over `MyApplication.class`. For this a chain of classloaders are initialized.
+  a. *Bootstrap classloader* is the initial loader. It contains classes in the core Java runtime. The main point of the *Bootstrap classloader* is to get a minimal set of classes (which includes essentials such as `java.lang.Object`, `Class`, and `Classloader`) loaded to allow other classloaders to bring up the rest of the system.
+    - JDK 8 and prior: These classes are loaded from `rt.jar`
+    - JDK 9 and above: Runtime is modularized and classloading is somewhat different
+  b. *Extension classloader* is next created. It defines *Bootstrap clssloader* as its parent and will delegate to parent.
+  c. *Application classloader* is next created. Responsible for loading user classes from the defined classpath. It defines *Extension clssloader* as its parent.
+      NOTE: *Application classloader* aka *System classloader* but it is better to not use this term
+4. If classes are not found by classloader (child to parent), it throws the `ClassNotFoundException`
+
+
+==== Executing Bytecode
+
+Java butecode is IR(intermediate representation) and is not tied to specific architecture. This gives it the portability across architectures.
+
+Every class file has a specific defined structure
+
+.Anatomy of a class file
+[%header]
+|===
+| Component | Description| Additional information
+| Magic Number| 0xCAFEBABE(JDK 8)| 0xCAFEDADA(JDK 9+) 
+
+|Version of class file format | The minor and major versions of the class file
+a| a. First 4 bytes Denotes conformance to class file format
+b. Second 4 bytes Denotes major and minor version used to compile file; these are checked so that target JVM is not lower than the java used to compile the file. If this is not followed a `UnSupportedClassVersionError` is thrown @ runtime.
+
+| Constant pool |The pool of constants for the class| 
+|Access flags |Whether the class is abstract, static, and so on
+|This class | The name of the current class
+|Superclass |The name of the superclass
+|Interfaces |Any interfaces in the class
+|Fields|Any fields in the class
+|Methods|Any methods in the class
+|Attributes| Any attributes of the class (e.g., name of the source file, etc.)
+|===
 
 == Hardware and OS
 
