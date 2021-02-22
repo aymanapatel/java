@@ -1,0 +1,74 @@
+= Legacy Java
+:toc:
+
+> Link https://www.youtube.com/watch?v=KD8WqjNbJhA&t=1818s
+
+== Java 5
+
+Things added by this version:
+
+1. Generics
+2. Annotations
+3. Concurrent Collections
+4. Enum types
+5. For Each loop statement
+6. Static imports
+7. ...
+
+
+
+== Java 6: Under the hood optimzations only
+
+== Java 7
+
+1. Diamond Operator
+2. Binary integer literals and underscores
+
+  int i = 0b1110001111;
+  int i = 1_000_000;
+
+3. Multiple catch (Union types)
+
+
+    try {
+      // do stuff
+      }
+    catch(IOException | SerilaizationExcetion e){
+      log.error("My error", e);
+    }
+
+4. Auto-closeable `try-with` resources
+
+    //Before 1
+    InputStream in = new FileInputStream("allo.txt");
+    try {
+      // do stuff
+      }
+    finally {
+      try(in.close();} catch(IOException e) {}
+    }
+    //Before 2: The right way
+    InputStream in = new FileInputStream("allo.txt");
+    try {
+      // do stuff
+      in.close();
+     }
+    catch(IOException e) {
+      try {
+        in.close();
+        } catch(IOException e1) {
+           e.addSuppressed(e1);
+        }
+        throw e;
+    }
+    // After
+    try (InputStream in = new FileInputStream("allo.txt")){ //auto-closed by magic. Does both Before 1 and 2
+      // do stuff
+    }
+
+5. File IO API
+
+    // Before
+    Loop thorugh file
+    // After
+    List<String> lines = Files.readLines(Paths.get("path","to", "file.txt");
