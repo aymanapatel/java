@@ -1,7 +1,0 @@
-= Effective Java
-:toc:
-
-
-== Links 
-
-1. https://www.youtube.com/watch?v=ANZXvXVa1Lg[Youtube Link]
